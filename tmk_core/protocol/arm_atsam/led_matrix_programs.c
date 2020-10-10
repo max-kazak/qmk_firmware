@@ -111,7 +111,6 @@ void *led_setups[] = {
     leds_teal_salmon,
     leds_red,
     leds_green,
-    leds_blue,
     leds_yellow,
     leds_rainbow_s,
     leds_rainbow_ns,
