@@ -128,5 +128,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_LED_FLUSH_LIMIT 10
 
 #define TAPPING_TERM 200
+#define TAPPING_TOGGLE 1  //Toggle layer with 1 presses
 
 #include "config_led.h"

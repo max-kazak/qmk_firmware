@@ -112,8 +112,6 @@ void *led_setups[] = {
     leds_red,
     leds_green,
     leds_yellow,
-    leds_rainbow_s,
-    leds_rainbow_ns,
     leds_off
 };
 
