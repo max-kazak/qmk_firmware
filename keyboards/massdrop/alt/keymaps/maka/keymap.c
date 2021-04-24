@@ -35,18 +35,18 @@ keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_GESC,        TD(EXLM_1),    TD(AT_2),       TD(HASH_3),     TD(DLR_4),  TD(PERC_5), TD(CIRC_6), TD(AMPR_7), TD(ASTR_8),     KC_9,        KC_0,           TD(MIN_UND),    TD(EQ_PLS), KC_BSPC, KC_DEL,  \
-        KC_TAB,         KC_Q,          KC_W,           KC_E,           KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,           KC_O,        KC_P,           KC_LBRC,        KC_RBRC,    KC_BSLS, KC_HOME, \
-        KC_CAPS,        KC_A,          KC_S,           KC_D,           KC_F,       KC_G,       KC_H,       KC_J,       KC_K,           KC_L,        TD(CLN),        TD(QUOT),                   KC_ENT,  KC_PGUP, \
-        TD(SHIFT_LP),   KC_Z,          KC_X,           KC_C,           KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,        KC_DOT,      TD(QST_SLSH),   TD(SHIFT_RP),               KC_UP,   KC_PGDN, \
-        TD(CTRL_LAB),   KC_LGUI,       TD(ALT_LCB),                                            KC_SPC,                                 TD(ALT_RCB), MO(1),                             KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_GESC,        TD(EXLM_1),    TD(AT_2),       TD(HASH_3),     TD(DLR_4),  TD(PERC_5), TD(CIRC_6), TD(AMPR_7), TD(ASTR_8),     KC_9,        KC_0,           KC_MINS,      KC_EQL , KC_BSPC, KC_DEL,  \
+        KC_TAB,         KC_Q,          KC_W,           KC_E,           KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,           KC_O,        KC_P,           KC_LBRC,      KC_RBRC, KC_BSLS, KC_HOME, \
+        KC_CAPS,        KC_A,          KC_S,           KC_D,           KC_F,       KC_G,       KC_H,       KC_J,       KC_K,           KC_L,        TD(CLN),        TD(QUOT),              KC_ENT,  KC_PGUP, \
+        TD(SHIFT_LP),   KC_Z,          KC_X,           KC_C,           KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,        TD(DOT_ARR), TD(QST_SLSH),   TD(SHIFT_RP),          KC_UP,   KC_PGDN, \
+        TD(CTRL_AB),    KC_LGUI,       TD(ALT_LCB),                                            KC_SPC,                                 TD(ALT_RCB), TT(1),                        KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
     [1] = LAYOUT(
-        KC_TILD,        KC_F1,         KC_F2,          KC_F3,          KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,          KC_F9,       KC_F10,         KC_F11,         KC_F12 ,    _______, _______, \
-        _______,        KC_P7  ,       KC_P8  ,        KC_P9  ,        KC_PPLS,    KC_PMNS,    _______,    L_T_MD ,    L_T_PTD,        L_PTN  ,     KC_PSCR,        _______,        _______,    _______, KC_END,  \
-        KC_NLCK,        KC_P4  ,       KC_P5  ,        KC_P6  ,        KC_PAST,    KC_PSLS,    _______,    _______,    _______,        _______,     _______,        _______,                    _______, KC_VOLU, \
-        _______,        KC_P1  ,       KC_P2  ,        KC_P3  ,        KC_PDOT,    _______,    _______,    KC_MUTE,    _______,        _______,     _______,        _______,                    _______, KC_VOLD, \
-        _______,        _______,       KC_P0  ,                                                _______,                                _______,     _______,                           _______, _______, _______  \
+        KC_GRV ,        KC_F1,         KC_F2,          KC_F3,          KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,          KC_F9,       KC_F10,         KC_F11,       KC_F12 , _______, _______, \
+        _______,        KC_P7  ,       KC_P8  ,        KC_P9  ,        KC_PPLS,    KC_PMNS,    _______,    L_T_MD ,    L_T_PTD,        L_PTN  ,     KC_PSCR,        _______,      _______, _______, KC_END,  \
+        KC_NLCK,        KC_P4  ,       KC_P5  ,        KC_P6  ,        KC_PAST,    KC_PSLS,    _______,    _______,    _______,        _______,     _______,        _______,               _______, KC_VOLU, \
+        _______,        KC_P1  ,       KC_P2  ,        KC_P3  ,        KC_PDOT,    _______,    _______,    KC_MUTE,    _______,        KC_DOT ,     _______,        _______,               _______, KC_VOLD, \
+        _______,        _______,       KC_P0  ,                                                _______,                                _______,     _______,                      _______, _______, _______  \
     ),
     /*
     [X] = LAYOUT(
@@ -271,13 +271,13 @@ led_instruction_t led_instructions[] = {
      //numpad ops
      { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 1075314688, .id1 = 12, .r = 0, .g =0, .b = 255, .layer = 1},
      //media
-     { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 33570816, .id1 = 33556480, .r = 76, .g =255, .b = 80, .layer = 1},
+     { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 33554432, .id1 = 33556480, .r = 76, .g =255, .b = 80, .layer = 1},
      //led control
      { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 29360128, .r = 244, .g =67, .b = 54, .layer = 1},
      //f-row
      { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 8190, .r = 255, .g =100, .b = 100, .layer = 1},
      //rest
-     { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 1006665729, .id1 = 3991934720, .id2 = 7, .r = 255, .g =255, .b = 255, .layer = 1},
+     { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_RGB, .id0 = 1006690305, .id1 = 3991934720, .id2 = 7, .r = 255, .g =255, .b = 255, .layer = 1},
      //backlight
      { .flags = LED_FLAG_MATCH_ID | LED_FLAG_MATCH_LAYER| LED_FLAG_USE_ROTATE_PATTERN, .id2 = 4294967288, .id3 = 1023, .layer = 1},
 

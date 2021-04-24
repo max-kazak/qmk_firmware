@@ -18,7 +18,8 @@ enum td_keycodes {
     ASTR_8,
     MIN_UND,
     EQ_PLS,
-    QST_SLSH
+    QST_SLSH,
+    DOT_ARR
 };
 
 // Define a type containing as many tapdance states as you need
@@ -653,6 +654,38 @@ void qst_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
+static td_state3_t dot_state;
+void dot_finished(qk_tap_dance_state_t *state, void *user_data) {
+    dot_state = cur_dance3(state);
+    switch (dot_state) {
+        case T3_SINGLE_TAP:
+            register_code16(KC_DOT);
+            break;
+        case T3_SINGLE_HOLD:
+            tap_code16(KC_MINS);
+            register_code16(KC_GT);
+            break;
+        case T3_DOUBLE_TAP: 
+            tap_code16(KC_DOT);
+            register_code16(KC_DOT);
+            break;
+    }
+}
+
+void dot_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (dot_state) {
+        case T3_SINGLE_TAP:
+            unregister_code16(KC_DOT);
+            break;
+        case T3_SINGLE_HOLD:
+            unregister_code16(KC_GT);
+            break;
+        case T3_DOUBLE_TAP:
+            unregister_code16(KC_DOT);
+            break;
+    }
+}
+
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
     [SHIFT_LP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, shiftlp_finished, shiftlp_reset),
@@ -674,4 +707,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [MIN_UND] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, unds_finished, unds_reset),
     [EQ_PLS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, plus_finished, plus_reset),
     [QST_SLSH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, qst_finished, qst_reset),
+    [DOT_ARR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dot_finished, dot_reset),
 };

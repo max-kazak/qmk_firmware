@@ -4,8 +4,7 @@ enum td_keycodes {
     SHIFT_RP,
     ALT_LCB, //'ALT' | '{'
     ALT_RCB,
-    CTRL_LAB, // 'CTRL' | '<'
-    CTRL_RAB,
+    CTRL_AB, // 'CTRL' | '<'
     CLN,
     QUOT,
     EXLM_1,
@@ -18,7 +17,8 @@ enum td_keycodes {
     ASTR_8,
     MIN_UND,
     EQ_PLS,
-    QST_SLSH
+    QST_SLSH,
+    DOT_ARR
 };
 
 // Define a type containing as many tapdance states as you need
@@ -176,63 +176,34 @@ void altrcb_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 // td for ctrl
 
-static td_state3_t ctrllab_state;
-void ctrllab_finished(qk_tap_dance_state_t *state, void *user_data) {
-    ctrllab_state = cur_dance3_wo_interupt(state);
-    switch (ctrllab_state) {
+static td_state3_t ctrlab_state;
+void ctrlab_finished(qk_tap_dance_state_t *state, void *user_data) {
+    ctrlab_state = cur_dance3_wo_interupt(state);
+    switch (ctrlab_state) {
         case T3_SINGLE_TAP:
-            register_code16(KC_LABK);
+            register_code16(KC_LT);
             break;
         case T3_SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_LCTRL)); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
+            register_mods(MOD_BIT(KC_LCTRL)); 
             break;
         case T3_DOUBLE_TAP: // Allow nesting of 2 parens `((` within tapping term
-            tap_code16(KC_LABK);
-            register_code16(KC_LABK);
+            register_code16(KC_GT);
     }
 }
 
-void ctrllab_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (ctrllab_state) {
+void ctrlab_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (ctrlab_state) {
         case T3_SINGLE_TAP:
-            unregister_code16(KC_LABK);
+            unregister_code16(KC_LT);
             break;
         case T3_SINGLE_HOLD:
             unregister_mods(MOD_BIT(KC_LCTRL)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
             break;
         case T3_DOUBLE_TAP:
-            unregister_code16(KC_LABK);
+            unregister_code16(KC_GT);
     }
 }
 
-static td_state3_t ctrlrab_state;
-void ctrlrab_finished(qk_tap_dance_state_t *state, void *user_data) {
-    ctrlrab_state = cur_dance3_wo_interupt(state);
-    switch (ctrlrab_state) {
-        case T3_SINGLE_TAP:
-            register_code16(KC_RABK);
-            break;
-        case T3_SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_RCTRL)); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
-            break;
-        case T3_DOUBLE_TAP: // Allow nesting of 2 parens `((` within tapping term
-            tap_code16(KC_RABK);
-            register_code16(KC_RABK);
-    }
-}
-
-void ctrlrab_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (ctrlrab_state) {
-        case T3_SINGLE_TAP:
-            unregister_code16(KC_RABK);
-            break;
-        case T3_SINGLE_HOLD:
-            unregister_mods(MOD_BIT(KC_RCTRL)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
-            break;
-        case T3_DOUBLE_TAP:
-            unregister_code16(KC_RABK);
-    }
-}
 
 static td_state3_t colon_state;
 void colon_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -653,14 +624,45 @@ void qst_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
+static td_state3_t dot_state;
+void dot_finished(qk_tap_dance_state_t *state, void *user_data) {
+    dot_state = cur_dance3(state);
+    switch (dot_state) {
+        case T3_SINGLE_TAP:
+            register_code16(KC_DOT);
+            break;
+        case T3_SINGLE_HOLD:
+            tap_code16(KC_MINS);
+            register_code16(KC_GT);
+            break;
+        case T3_DOUBLE_TAP: 
+            tap_code16(KC_DOT);
+            register_code16(KC_DOT);
+            break;
+    }
+}
+
+void dot_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (dot_state) {
+        case T3_SINGLE_TAP:
+            unregister_code16(KC_DOT);
+            break;
+        case T3_SINGLE_HOLD:
+            unregister_code16(KC_GT);
+            break;
+        case T3_DOUBLE_TAP:
+            unregister_code16(KC_DOT);
+            break;
+    }
+}
+
 // Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
 qk_tap_dance_action_t tap_dance_actions[] = {
     [SHIFT_LP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, shiftlp_finished, shiftlp_reset),
     [SHIFT_RP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, shiftrp_finished, shiftrp_reset),
     [ALT_LCB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, altlcb_finished, altlcb_reset),
     [ALT_RCB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, altrcb_finished, altrcb_reset),
-    [CTRL_LAB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrllab_finished, ctrllab_reset),
-    [CTRL_RAB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrlrab_finished, ctrlrab_reset),
+    [CTRL_AB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ctrlab_finished, ctrlab_reset),
     [CLN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, colon_finished, colon_reset),
     [QUOT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quote_finished, quote_reset),
     [EXLM_1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, exlm_finished, exlm_reset),
@@ -674,4 +676,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [MIN_UND] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, unds_finished, unds_reset),
     [EQ_PLS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, plus_finished, plus_reset),
     [QST_SLSH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, qst_finished, qst_reset),
+    [DOT_ARR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dot_finished, dot_reset),
 };

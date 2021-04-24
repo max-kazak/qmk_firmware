@@ -43,15 +43,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,         TD(EXLM_1), TD(AT_2),     TD(HASH_3),   TD(DLR_4),  TD(PERC_5), TD(CIRC_6), TD(AMPR_7), TD(ASTR_8), KC_9,         KC_0,         TD(MIN_UND), TD(EQ_PLS), KC_BSPC,   KC_INS,  KC_PGUP, KC_HOME, \
         KC_TAB,         KC_Q,       KC_W,         KC_E,         KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,         KC_P,         KC_LBRC,     KC_RBRC,    KC_BSLS,   KC_DEL,  KC_PGDN, KC_END , \
         KC_CAPS,        KC_A,       KC_S,         KC_D,         KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,         TD(CLN),      TD(QUOT),    KC_ENT,                                           \
-        TD(SHIFT_LP),   KC_Z,       KC_X,         KC_C,         KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,       TD(QST_SLSH), TD(SHIFT_RP),                                KC_UP,            \
+        TD(SHIFT_LP),   KC_Z,       KC_X,         KC_C,         KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    TD(DOT_ARR),  TD(QST_SLSH), TD(SHIFT_RP),                                KC_UP,            \
         TD(CTRL_LAB),   KC_LGUI,    TD(ALT_LCB),                            KC_SPC,                                         TD(ALT_RCB),  TT(1),        KC_APP,      TD(CTRL_RAB),          KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
     [1] = LAYOUT(
         _______,        _______,    _______,      _______,      _______,    _______,    KC_MPRV,    KC_MPLY,    KC_MNXT,    _______,      KC_MUTE,      KC_VOLD,      KC_VOLU,              L_T_BR , L_T_PTD, L_T_MD , \
-        _______,        _______,    _______,      _______,      _______,    _______,    _______,    _______,    _______,    _______,      _______,      _______,      KC_CALC,   _______,   L_PSD  , L_BRI  , L_PSI  , \
+        _______,        KC_1   ,    KC_2   ,      KC_3   ,      KC_4   ,    KC_5   ,    KC_6   ,    KC_7   ,    KC_8   ,    _______,      _______,      KC_MINS,      KC_EQL ,   _______,   L_PSD  , L_BRI  , L_PSI  , \
         _______,        KC_P7  ,    KC_P8  ,      KC_P9  ,      KC_PPLS,    KC_PMNS,    _______,    _______,    _______,    _______,      _______,      _______,      _______,   _______,   L_PTP  , L_BRD  , L_PTN  , \
         KC_NLCK,        KC_P4  ,    KC_P5  ,      KC_P6  ,      KC_PAST,    KC_PSLS,    _______,    _______,    _______,    _______,      _______,      _______,      _______,                                         \
-        _______,        KC_P1  ,    KC_P2  ,      KC_P3  ,      KC_PDOT,    _______,    _______,    _______,    _______,    _______,      _______,      _______,                                     _______,          \
+        _______,        KC_P1  ,    KC_P2  ,      KC_P3  ,      KC_PDOT,    _______,    _______,    _______,    _______,    KC_DOT ,      _______,      _______,                                     _______,          \
         _______,        _______,    KC_P0  ,                                _______,                                        _______,      _______,      _______,      _______,              _______, _______, _______  \
     ),
     /*
